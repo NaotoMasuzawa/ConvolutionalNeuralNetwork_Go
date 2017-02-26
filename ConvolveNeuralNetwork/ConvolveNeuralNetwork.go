@@ -41,9 +41,11 @@ func Construct(self *ConvolveNeuralNetwork,
     fmt.Println("Construct the Convolve and Pooling layer")
     self.CPL = make([]dirCPL.ConvolutionalPoolingLayer, self.nConvPoolLayers)
 
-    var inSize = make([][]int, self.nConvPoolLayers)
-    var convedSize = make([][]int, self.nConvPoolLayers)
-    var pooledSize = make([][]int, self.nConvPoolLayers)
+    var(
+        inSize = make([][]int, self.nConvPoolLayers)
+        convedSize = make([][]int, self.nConvPoolLayers)
+        pooledSize = make([][]int, self.nConvPoolLayers)
+    )
     for i := 0; i < self.nConvPoolLayers; i++{
         inSize[i] = make([]int, 2)
         convedSize[i] = make([]int, 2)
