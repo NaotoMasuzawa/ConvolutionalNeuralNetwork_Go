@@ -122,7 +122,7 @@ func Train(self *LogisticRegression, input [][]float64, actualLabel[][]int, lear
     self.Delta = delta
 }
 
-func Predict(self * LogisticRegression, input [][]float64, actualLabel [][]int){
+func Predict(self *LogisticRegression, input [][]float64, actualLabel [][]int){
 
     var argMax []int
     argMax = make([]int, self.miniBatchSize)
