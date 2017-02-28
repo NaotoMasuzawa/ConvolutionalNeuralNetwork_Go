@@ -55,7 +55,7 @@ func main(){
         nTrain int = len(trainImage)
         nTest int = len(testImage)
         perm []int
-        learningRate float64 = 0.01
+        learningRate float64 = 0.001
         epochs int = 20
         CrossEntropy []float64
         Accuracy []float64
@@ -93,7 +93,7 @@ func main(){
             dirCNN.Train((&cnn), ImageBatch, LabelBatch, learningRate)
             CrossEntropy[i] += cnn.LR.CrossEntropy / float64(nTrain)
         }
-        learningRate *= 0.9
+        learningRate *= 0.99
 
         for count := 0; count < (nTest / miniBatchSize); count++{
             fmt.Println()
