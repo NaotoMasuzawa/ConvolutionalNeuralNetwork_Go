@@ -20,7 +20,7 @@ func main(){
         class = 10
         miniBatchSize = 10
         dropout = []bool {false}
-        dropOutPossibility = []float64 {0}
+        dropOutPossibility = []float64 {0.0}
         activationName = "ReLU"
     )
 
