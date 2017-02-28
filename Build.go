@@ -56,7 +56,7 @@ func main(){
         nTest int = len(testImage)
         perm []int
         learningRate float64 = 0.01
-        epochs int = 1
+        epochs int = 20
         CrossEntropy []float64
         Accuracy []float64
     )
@@ -87,8 +87,8 @@ func main(){
             fmt.Printf("Train Epoch %d Batch %d\n", i + 1, count + 1)
             
             for j := 0; j < miniBatchSize; j++{
-                ImageBatch[j] = append(trainImage[perm[count * miniBatchSize + j]])
-                LabelBatch[j] = append(trainLabel[perm[count * miniBatchSize + j]])
+                ImageBatch[j] = trainImage[perm[count * miniBatchSize + j]]
+                LabelBatch[j] = trainLabel[perm[count * miniBatchSize + j]]
             }
             dirCNN.Train((&cnn), ImageBatch, LabelBatch, learningRate)
             CrossEntropy[i] += cnn.LR.CrossEntropy / float64(nTrain)
@@ -99,8 +99,8 @@ func main(){
             fmt.Println()
             fmt.Printf("Test Epoch %d Batch %d\n", i + 1, count + 1)
             for j := 0; j < miniBatchSize; j++{
-                ImageBatch[j] = append(testImage[count * miniBatchSize + j])
-                LabelBatch[j] = append(testLabel[count * miniBatchSize + j])
+                ImageBatch[j] = testImage[count * miniBatchSize + j]
+                LabelBatch[j] = testLabel[count * miniBatchSize + j]
             }
             dirCNN.Test((&cnn), ImageBatch, LabelBatch)
             Accuracy[i] += float64(cnn.LR.AccuracyCount) / float64(nTest)

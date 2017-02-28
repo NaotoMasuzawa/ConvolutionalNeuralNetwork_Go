@@ -147,7 +147,7 @@ func Convolve(self *ConvolutionalPoolingLayer, Input [][][][]float64){
                     for m:= 0; m < self.channel; m++{
                         for n:= 0; n < self.kernelSize[0]; n++{
                             for o:= 0; o < self.kernelSize[1]; o++{
-                                convolved[i][j][k][l] += self.W[j][m][n][o] * self.Input[i][m][k + n][l + o] + self.Bias[j]
+                                convolved[i][j][k][l] += self.W[j][m][n][o] * Input[i][m][k + n][l + o] + self.Bias[j]
                             }
                         }
                     }
