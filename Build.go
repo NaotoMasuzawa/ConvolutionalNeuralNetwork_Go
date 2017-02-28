@@ -55,7 +55,7 @@ func main(){
         nTrain int = len(trainImage)
         nTest int = len(testImage)
         perm []int
-        learningRate float64 = 0.001
+        learningRate float64 = 0.005
         epochs int = 20
         CrossEntropy []float64
         Accuracy []float64
