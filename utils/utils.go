@@ -73,10 +73,12 @@ func SoftMax(input[]float64) []float64{
             max = input[i]
         }
     }
+    
     for i := 0; i < size; i++{
         output[i] = math.Exp(input[i] - max)
         sum += output[i]
     }
+    
     for i := 0; i < size; i++{
         output[i] /= sum
     }
@@ -86,6 +88,7 @@ func SoftMax(input[]float64) []float64{
 func CrossEntropy(input[]float64, label[]int) float64{
 
     var output float64
+    
     size := len(input)
     for i := 0; i < size; i++{
         output += (-1) * math.Log(input[i]) * float64(label[i])

@@ -256,6 +256,7 @@ func DConvolve(self *ConvolutionalPoolingLayer, learningRate float64){
     var gradBias = make([]float64, self.nKernels)
 
     var dConvolve = make([][][][]float64, self.miniBatchSize)
+    
     for i := 0; i < self.miniBatchSize; i++{
         dConvolve[i] = make([][][]float64, self.channel)
 

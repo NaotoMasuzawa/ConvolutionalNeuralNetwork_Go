@@ -19,7 +19,7 @@ func main(){
         MLPsizes = []int {500}
         class = 10
         miniBatchSize = 10
-        dropout = []bool {false}
+        dropOut = []bool {false}
         dropOutPossibility = []float64 {0.0}
         activationName = "ReLU"
     )
@@ -38,7 +38,7 @@ func main(){
                       MLPsizes, 
                       class, 
                       miniBatchSize, 
-                      dropout, 
+                      dropOut, 
                       dropOutPossibility, 
                       activationName)
 

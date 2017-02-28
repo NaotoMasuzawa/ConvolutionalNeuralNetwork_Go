@@ -38,7 +38,7 @@ func Construct(self *ConvolveNeuralNetwork,
     self.nMLP = len(MLPsizes)
     self.class = class
 
-    fmt.Println("Construct the Convolve and Pooling layer")
+    fmt.Println("Construct the Convolve and Pooling layer.")
     self.CPL = make([]dirCPL.ConvolutionalPoolingLayer, self.nConvPoolLayers)
 
     var(
@@ -69,18 +69,18 @@ func Construct(self *ConvolveNeuralNetwork,
         pooledSize[i][0] = convedSize[i][0] / poolSizes[i][0]
         pooledSize[i][1] = convedSize[i][1] / poolSizes[i][1]
 
-        fmt.Printf("Construct the %d layer\n", i + 1)
+        fmt.Printf("Construct the %d layer.\n", i + 1)
         dirCPL.Construct(&(self.CPL[i]), inSize[i], eachChannel, nKernel[i], kernelSizes[i], poolSizes[i], convedSize[i], pooledSize[i], miniBatchSize, activationName)
         dirCPL.Confirm(&(self.CPL[i]))
     }
     
-    fmt.Println("----------------------------------")
-    fmt.Println("Construct the Connection")
+    fmt.Println("-----------------------------------")
+    fmt.Println("Construct the Connection.")
     flattenedSize := nKernel[self.nConvPoolLayers - 1] * pooledSize[self.nConvPoolLayers - 1][0] * pooledSize[self.nConvPoolLayers - 1][1]
     dirConnect.Construct((&self.Connect), miniBatchSize, nKernel[self.nConvPoolLayers - 1], pooledSize[self.nConvPoolLayers - 1], flattenedSize, MLPsizes[0])
 
-    fmt.Println("----------------------------------")
-    fmt.Println("Construct the MultiLayerPerceptron")
+    fmt.Println("-----------------------------------")
+    fmt.Println("Construct the MultiLayerPerceptron.")
     self.MLP = make([]dirMLP.MultiLayerPerceptron, self.nMLP)
     
     for i := 0; i < self.nMLP; i++{
@@ -97,11 +97,11 @@ func Construct(self *ConvolveNeuralNetwork,
         dirMLP.Confirm((&self.MLP[i]))
     }
 
-    fmt.Println("--------------------------------")
-    fmt.Println("Construct the LogisticRegression")
+    fmt.Println("---------------------------------")
+    fmt.Println("Construct the LogisticRegression.")
     dirLR.Construct((&self.LR), MLPsizes[self.nMLP - 1], class, miniBatchSize)
     dirLR.Confirm(&self.LR)
-    fmt.Println("--------------------------------")
+    fmt.Println("---------------------------------")
 }
 
 func Train(self *ConvolveNeuralNetwork, input [][][][]float64, actualLabel [][]int, learningRate float64){

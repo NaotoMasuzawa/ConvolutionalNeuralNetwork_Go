@@ -170,7 +170,6 @@ func Predict(self *LogisticRegression, input [][]float64, actualLabel [][]int){
         fmt.Println(predictedLabel[i])
 
         for j := 0; j < self.out; j++{
-
             if (predictedLabel[i][j] == 1 && actualLabel[i][j] == 1){
                 accuracyCount += 1
                 fmt.Println("Predicted")
