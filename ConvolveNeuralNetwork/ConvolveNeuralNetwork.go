@@ -30,7 +30,7 @@ func Construct(self *ConvolveNeuralNetwork,
                MLPsizes           []int,
                class                int,
                miniBatchSize        int,
-               dropout            []bool,
+               dropOut            []bool,
                dropOutPossibility []float64,
                activationName       string){
 
@@ -93,7 +93,7 @@ func Construct(self *ConvolveNeuralNetwork,
         }
 
         fmt.Printf("Construct the %d layer.\n", i + 1)
-        dirMLP.Construct((&self.MLP[i]), in, MLPsizes[i], dropout[i], dropOutPossibility[i], miniBatchSize, activationName)
+        dirMLP.Construct((&self.MLP[i]), in, MLPsizes[i], dropOut[i], dropOutPossibility[i], miniBatchSize, activationName)
         dirMLP.Confirm((&self.MLP[i]))
     }
 
