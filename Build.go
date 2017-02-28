@@ -98,6 +98,7 @@ func main(){
         for count := 0; count < (nTest / miniBatchSize); count++{
             fmt.Println()
             fmt.Printf("Test Epoch %d Batch %d\n", i + 1, count + 1)
+            
             for j := 0; j < miniBatchSize; j++{
                 ImageBatch[j] = testImage[count * miniBatchSize + j]
                 LabelBatch[j] = testLabel[count * miniBatchSize + j]
