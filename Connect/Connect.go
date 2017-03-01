@@ -12,7 +12,7 @@ type Connect struct{
     Unflattened [][][][]float64
 }
 
-func Construct(self * Connect,
+func Construct(self *Connect,
                miniBatchSize   int,
                nKernel         int,
                pooledSize []   int,
