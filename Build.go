@@ -57,8 +57,8 @@ func main(){
         perm []int
         learningRate float64 = 0.001
         epochs int = 20
-        CrossEntropy []float64
-        Accuracy []float64
+        CrossEntropy = make([]float64, epochs)
+        Accuracy = make([]float64, epochs)
     )
 
     ImageBatch = make([][][][]float64, miniBatchSize)
@@ -75,9 +75,6 @@ func main(){
             }
         }
     }
-
-    CrossEntropy = make([]float64, epochs)
-    Accuracy = make([]float64, epochs)
     
     for i := 0; i < epochs; i++{
         perm = rand.Perm(nTrain)
