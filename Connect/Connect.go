@@ -51,10 +51,10 @@ func Flatten(self *Connect, input [][][][]float64){
 
 func Unflatten(self *Connect, input [][]float64, W [][]float64){
 
-    var Delta [][]float64
-    Delta = make([][]float64, self.miniBatchSize)
+    var delta [][]float64
+    delta = make([][]float64, self.miniBatchSize)
     for i := 0; i < self.miniBatchSize; i++{
-        Delta[i] = make([]float64, self.flattenedSize)
+        delta[i] = make([]float64, self.flattenedSize)
     }
 
     var unflattened = make([][][][]float64, self.miniBatchSize)
@@ -75,7 +75,7 @@ func Unflatten(self *Connect, input [][]float64, W [][]float64){
         for j := 0; j < self.flattenedSize; j++{
             for k := 0; k < self.hiddenLayerSize; k++{
 
-                Delta[i][j] = W[k][j] * input[i][k]
+                delta[i][j] = W[k][j] * input[i][k]
             }
         }
     }
@@ -86,7 +86,7 @@ func Unflatten(self *Connect, input [][]float64, W [][]float64){
         for j := 0; j < self.nKernel; j++{
             for k := 0; k < self.pooledSize[0]; k++{
                 for l := 0; l < self.pooledSize[1]; l++{
-                    unflattened[i][j][k][l] = Delta[i][index]
+                    unflattened[i][j][k][l] = delta[i][index]
                     index += 1
                 }
             }
