@@ -27,7 +27,7 @@ func Construct(self *ConvolveNeuralNetwork,
                nKernel            []int,
                kernelSizes      [][]int,
                poolSizes        [][]int,
-               MLPsizes           []int,
+               mlpSizes           []int,
                class                int,
                miniBatchSize        int,
                dropOut            []bool,
@@ -35,7 +35,7 @@ func Construct(self *ConvolveNeuralNetwork,
                activationName       string){
 
     self.nConvPoolLayers = len(nKernel)
-    self.nMLP = len(MLPsizes)
+    self.nMLP = len(mlpSizes)
     self.class = class
 
     fmt.Println("Construct the Convolve and Pooling layer.")
@@ -77,7 +77,7 @@ func Construct(self *ConvolveNeuralNetwork,
     fmt.Println("-----------------------------------")
     fmt.Println("Construct the Connection.")
     flattenedSize := nKernel[self.nConvPoolLayers - 1] * pooledSize[self.nConvPoolLayers - 1][0] * pooledSize[self.nConvPoolLayers - 1][1]
-    dirConnect.Construct((&self.Connect), miniBatchSize, nKernel[self.nConvPoolLayers - 1], pooledSize[self.nConvPoolLayers - 1], flattenedSize, MLPsizes[0])
+    dirConnect.Construct((&self.Connect), miniBatchSize, nKernel[self.nConvPoolLayers - 1], pooledSize[self.nConvPoolLayers - 1], flattenedSize, mlpSizes[0])
 
     fmt.Println("-----------------------------------")
     fmt.Println("Construct the MultiLayerPerceptron.")
@@ -89,17 +89,17 @@ func Construct(self *ConvolveNeuralNetwork,
         if i == 0{
             in = flattenedSize
         }else{
-            in = MLPsizes[i - 1]
+            in = mlpSizes[i - 1]
         }
 
         fmt.Printf("Construct the %d layer.\n", i + 1)
-        dirMLP.Construct((&self.MLP[i]), in, MLPsizes[i], dropOut[i], dropOutPossibility[i], miniBatchSize, activationName)
+        dirMLP.Construct((&self.MLP[i]), in, mlpSizes[i], dropOut[i], dropOutPossibility[i], miniBatchSize, activationName)
         dirMLP.Confirm((&self.MLP[i]))
     }
 
     fmt.Println("---------------------------------")
     fmt.Println("Construct the LogisticRegression.")
-    dirLR.Construct((&self.LR), MLPsizes[self.nMLP - 1], class, miniBatchSize)
+    dirLR.Construct((&self.LR), mlpSizes[self.nMLP - 1], class, miniBatchSize)
     dirLR.Confirm(&self.LR)
     fmt.Println("---------------------------------")
 }
