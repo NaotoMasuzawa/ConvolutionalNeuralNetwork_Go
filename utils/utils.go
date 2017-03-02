@@ -58,7 +58,7 @@ func Dactivation(activationName string, input float64) float64{
     return x
 }
 
-func SoftMax(input[]float64) []float64{
+func SoftMax(input []float64) []float64{
 
     var(
         max float64 = 0.0
@@ -85,7 +85,7 @@ func SoftMax(input[]float64) []float64{
     return output
 }
 
-func CrossEntropy(input[]float64, label[]int) float64{
+func CrossEntropy(input []float64, label []int) float64{
 
     var output float64
     
