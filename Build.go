@@ -16,7 +16,7 @@ func main(){
         nKernel = []int {20, 50}
         kernelSizes = [][]int {{5, 5}, {5, 5}}
         poolSizes = [][]int {{2, 2}, {2, 2}}
-        MLPsizes = []int {500}
+        mlpSizes = []int {500}
         class = 10
         miniBatchSize = 10
         dropOut = []bool {false}
@@ -35,7 +35,7 @@ func main(){
                       nKernel, 
                       kernelSizes, 
                       poolSizes, 
-                      MLPsizes, 
+                      mlpSizes, 
                       class, 
                       miniBatchSize, 
                       dropOut, 
