@@ -38,8 +38,8 @@ func Construct(self *ConvolutionalPoolingLayer,
                poolSize       []int, 
                convolvedSize  []int, 
                pooledSize     []int,
-               miniBatchSize  int,
-               activationName string){
+               miniBatchSize    int,
+               activationName   string){
 
     self.imageSize = imageSize
     self.channel = channel
