@@ -72,7 +72,7 @@ func Output(self *LogisticRegression, input [][]float64){
     self.Output = output
 }
 
-func Train(self *LogisticRegression, input [][]float64, actualLabel[][]int, learningRate float64){
+func Train(self *LogisticRegression, input [][]float64, actualLabel [][]int, learningRate float64){
 
     var gradW = make([][]float64, self.out)
     for i := 0; i < self.out; i++{
